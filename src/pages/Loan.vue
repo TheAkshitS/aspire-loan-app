@@ -1,5 +1,6 @@
 <template>
-  <div class="container bg-primary">
+<div>
+  <div class="container bg-primary mobile-only">
     <div class="q-pa-md text-white">
       <div class="text-h6">Get cash</div>
       <div>
@@ -14,6 +15,11 @@
       </q-card>
     </q-dialog>
   </div>
+
+  <div class="q-ma-xl desktop-only">
+    <loan-form class="q-pa-xl" />
+  </div>
+</div>
 </template>
 
 <script>
@@ -28,7 +34,7 @@ export default {
 
   data() {
     return {
-      showFormDialog: true,
+      showFormDialog: this.$q.platform.is.mobile ? true : false,
     }
   },
 }
