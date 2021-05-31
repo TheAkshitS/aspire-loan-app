@@ -65,7 +65,7 @@
           <q-input
             type="number"
             v-model.number="form.loanTerm"
-            label="Loan term(in months) *"
+            label="Loan term(in weeks) *"
             color="secondary"
             lazy-rules
             :rules="[
@@ -116,10 +116,12 @@ export default {
         email: null,
         phone: null,
         amountRequired: null,
+        amountToBeRepaid: null,
         loanTerm: null,
         userId: uid(),
         loanId: uid().slice(0, 5),
         repaymentFrequency: 1, //in weeks
+        weeklyRepaymentAmount: null,
         isActive: true,
         isApproved: false,
         createdAt: date.formatDate(Date.now(), 'YYYY-MM-DD HH:mm:ss'),
@@ -153,11 +155,14 @@ export default {
           message: 'You need to accept the license and terms first',
         })
       } else {
+        this.form.weeklyRepaymentAmount = Number((this.form.amountRequired / this.form.loanTerm).toFixed(3))
+        this.form.amountToBeRepaid = this.form.amountRequired
+
         await this.createLoan(this.form)
 
         await this.$q.notify({
           color: 'positive',
-          icon: 'cloud_done',
+          icon: 'done',
           message: 'You loan request has been submitted',
         })
 
@@ -171,13 +176,15 @@ export default {
         email: null,
         phone: null,
         amountRequired: null,
+        amountToBeRepaid: null,
         loanTerm: null,
         userId: uid(),
         loanId: uid().slice(0, 5),
         repaymentFrequency: 1,
+        weeklyRepaymentAmount: null,
         isActive: true,
         isApproved: false,
-        createdAt: date.formatDate(Date.now(), 'YYYY-MM-DDTHH:mm:ss'),
+        createdAt: date.formatDate(Date.now(), 'YYYY-MM-DD HH:mm:ss'),
         updatedAt: null,
       }
 
@@ -186,3 +193,10 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.container {
+  height: 100vh;
+  position: fixed;
+}
+</style>

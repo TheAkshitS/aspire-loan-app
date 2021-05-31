@@ -6,8 +6,7 @@ const routes = [
     children: [
       { path: '/', name: 'dashboard', component: () => import('pages/Dashboard.vue') },
       { path: '/loan', name: 'create-loan', component: () => import('pages/Loan.vue') },
-      { path: '/loan/:id', name: 'update-loan', component: () => import('pages/Loan.vue') },
-      { path: '/pay-loan/:id', name: 'pay-loan', component: () => import('pages/LoanPay.vue') },
+      { path: '/loan-pay', name: 'pay-loan', component: () => import('pages/LoanPay.vue') },
       { path: '/admin', name: 'admin', component: () => import('pages/Admin.vue') }
     ]
   },

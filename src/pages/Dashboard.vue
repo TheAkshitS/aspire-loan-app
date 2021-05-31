@@ -31,7 +31,7 @@
         <q-separator inset />
 
         <q-card-section class="q-mt-xs" v-if="showLoanPayOption">
-          <q-btn color="secondary" label="Pay" class="full-width" />
+          <q-btn color="secondary" label="Pay" class="full-width" @click="$router.push('/loan-pay')" />
           <div class="text-subtitle2 q-mt-md">
             60 days interest free cedit to make payments
           </div>
@@ -64,9 +64,9 @@ export default {
     }),
 
     showLoanPayOption() {
-      const hasApprovedLoad = this.allLoans.find(loan => loan.isApproved === true)
+      const hasApprovedLoan = this.allLoans.find(loan => loan.isApproved === true)
       
-      return hasApprovedLoad
+      return hasApprovedLoan
     },
   },
 

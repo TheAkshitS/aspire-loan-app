@@ -5,7 +5,8 @@
       "email": "akshit@gmail.com",
       "phone": "8888888888",
       "amountRequired": 10000,
-      "loanTerm": 3,
+      "amountToBeRepaid": 8000,
+      "loanTerm": 10,
       "userId": "d8be7e2f-7428-4195-817d-83e04da73999",
       "loanId": "b0c90",
       "repaymentFrequency": 1,
@@ -13,7 +14,25 @@
       "isApproved": true,
       "createdAt": "2021-05-31 19:58:54",
       "updatedAt": null,
+      "weeklyRepaymentAmount": 1000,
       "id": 1
+    },
+    {
+      "fullName": "Test2",
+      "email": "test@gmail.com",
+      "phone": "7777777777",
+      "amountRequired": 20000,
+      "amountToBeRepaid": 20000,
+      "loanTerm": 10,
+      "userId": "408a73c6-9d3e-4ebd-8c2c-8c15acbac33f",
+      "loanId": "1ac3a",
+      "repaymentFrequency": 1,
+      "weeklyRepaymentAmount": 2000,
+      "isActive": true,
+      "isApproved": false,
+      "createdAt": "2021-06-01 02:08:15",
+      "updatedAt": null,
+      "id": 2
     }
   ]
 }

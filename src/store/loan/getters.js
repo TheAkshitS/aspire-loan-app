@@ -3,3 +3,9 @@ export function creditLimit (state) {
         state.creditLimit,
     )
 }
+
+export function activeLoanList (state) {   
+    const activeLoanList = state.allLoans.filter(loan => loan.isApproved === true)
+
+    return activeLoanList
+}

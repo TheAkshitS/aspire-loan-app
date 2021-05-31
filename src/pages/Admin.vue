@@ -11,6 +11,16 @@
         :selected.sync="selectedColumn"
       />
 
+      <q-footer class="bg-white">
+        <center>
+          <q-toolbar>
+            <q-toolbar-title class="text-grey text-body2">
+              <q-icon name="info" /> This page will only be getting shown to the Admin.
+            </q-toolbar-title>
+          </q-toolbar>
+        </center>
+      </q-footer> 
+
       <q-dialog v-model="showConfirmApproval" persistent>
       <q-card>
         <q-card-section class="row items-center">
@@ -77,6 +87,17 @@ export default {
               val,
             )}`,
         },
+        {
+          name: 'amountToBeRepaid',
+          label: 'Amount to be repayed',
+          field: 'amountToBeRepaid',
+          sort: true,
+          sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+          format: (val) =>
+            `S$ ${new Intl.NumberFormat({ maximumSignificantDigits: 2 }).format(
+              val,
+            )}`,
+        },
         { name: 'loanTerm', label: 'Loan Term (years)', field: 'loanTerm' },
         {
           name: 'isActive',
@@ -133,6 +154,12 @@ export default {
       await this.getAllLoans()
 
       this.showConfirmApproval = false
+
+      return this.$q.notify({
+        color: 'positive',
+        icon: 'done',
+        message: 'Loan approved.',
+      })
     },
     
     denyLoan() {
