@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
 import loan from './loan/'
+import VuexPersistence from 'vuex-persist'
 
 Vue.use(Vuex)
 
@@ -14,11 +14,16 @@ Vue.use(Vuex)
  * with the Store instance.
  */
 
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
+})
+
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       loan
     },
+    plugins: [vuexLocal.plugin],
 
     // enable strict mode (adds overhead!)
     // for dev mode only
