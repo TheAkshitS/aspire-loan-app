@@ -121,6 +121,7 @@ export default {
         loanId: uid().slice(0, 5),
         repaymentFrequency: 1, //in weeks
         isActive: true,
+        isApproved: false,
         createdAt: date.formatDate(Date.now(), 'YYYY-MM-DD HH:mm:ss'),
         updatedAt: null,
       },
@@ -175,6 +176,7 @@ export default {
         loanId: uid().slice(0, 5),
         repaymentFrequency: 1,
         isActive: true,
+        isApproved: false,
         createdAt: date.formatDate(Date.now(), 'YYYY-MM-DDTHH:mm:ss'),
         updatedAt: null,
       }

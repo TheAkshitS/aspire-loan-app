@@ -6,30 +6,50 @@
         :data="allLoans"
         :columns="columns"
         row-key="loanId"
-        :selected-rows-label="getSelectedString"
-        selection="multiple"
-        :selected.sync="selected"
+        :selected-rows-label="checkboxClicked"
+        selection="single"
+        :selected.sync="selectedColumn"
       />
+
+      <q-dialog v-model="showConfirmApproval" persistent>
+      <q-card>
+        <q-card-section class="row items-center">
+          <span class="q-ml-sm">You are sure you want to approve the loan?</span>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Yes" color="secondary" @click="approveLoan" />
+          <q-btn flat label="No" color="secondary" @click="denyLoan" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'admin',
 
   data() {
     return {
-      selected: [],
-
+      showConfirmApproval: false,
+      selectedColumn: [],
       columns: [
         {
           name: 'loanId',
           align: 'left',
           label: 'Loan ID',
           field: 'loanId',
+        },
+        {
+          name: 'isApproved',
+          label: 'Approved',
+          field: 'isApproved',
+          align: 'left',
+          format: (val) => (val === true ? 'Yes' : 'No'),
         },
         {
           name: 'fullName',
@@ -82,12 +102,42 @@ export default {
   },
 
   methods: {
-    getSelectedString() {
-      // return this.selected.length === 0
-      //   ? ''
-      //   : `${this.selected.length} record${
-      //       this.selected.length > 1 ? 's' : ''
-      //     } selected of ${this.data.length}`
+    ...mapActions({
+      updateLoan: 'loan/updateLoan',
+      getAllLoans: 'loan/getAllLoans',
+    }),
+
+    checkboxClicked() {
+      if(this.selectedColumn[0].isApproved) {
+        this.selectedColumn = []
+
+        return this.$q.notify({
+          color: 'warning',
+          icon: 'warning',
+          message: 'This loan is already approved.',
+        })
+      }
+      
+      this.showConfirmApproval = true
+    },
+
+    async approveLoan() {
+      const payload = {
+        id: this.selectedColumn[0].id,
+        payload: {
+          isApproved: true
+        }
+      }
+      
+      await this.updateLoan(payload)
+      await this.getAllLoans()
+
+      this.showConfirmApproval = false
+    },
+    
+    denyLoan() {
+      this.selectedColumn = []
+      this.showConfirmApproval = false
     },
   },
 }

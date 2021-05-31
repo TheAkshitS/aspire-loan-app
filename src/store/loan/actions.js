@@ -7,5 +7,9 @@ export async function getAllLoans({ commit }) {
 }
 
 export async function createLoan({ commit }, payload) {
-  const response = await api.post('/loans', payload)
+  await api.post('/loans', payload)
+}
+
+export async function updateLoan({ commit }, { id, payload }) {
+  await api.patch(`/loans/${id}`, payload)
 }
