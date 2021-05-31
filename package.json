@@ -1,8 +1,8 @@
 {
   "name": "aspire",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "description": "Aspire loan app",
+  "productName": "Aspire App",
   "author": "TheAkshitS <akshit.s@outlook.com>",
   "private": true,
   "scripts": {
