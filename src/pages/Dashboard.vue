@@ -53,16 +53,20 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
   computed: {
+    ...mapState('loan', ['allLoans']),
+  
     ...mapGetters({
-      creditLine: 'loan/creditLimit',
+      creditLine: 'loan/creditLimit', 
     }),
 
     showLoanPayOption() {
-      return true
+      const hasApprovedLoad = this.allLoans.find(loan => loan.isApproved === true)
+      
+      return hasApprovedLoad
     },
   },
 
