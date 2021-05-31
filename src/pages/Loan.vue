@@ -104,6 +104,7 @@
 
 <script>
 import { date, uid } from 'quasar'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Loan',
@@ -139,6 +140,10 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      createLoan: 'loan/createLoan'
+    }),
+
     async onSubmit() {
       if (this.formTermsAccepted !== true) {
         await this.$q.notify({
@@ -147,6 +152,8 @@ export default {
           message: 'You need to accept the license and terms first',
         })
       } else {
+        await this.createLoan(this.form)
+
         await this.$q.notify({
           color: 'positive',
           icon: 'cloud_done',

@@ -5,3 +5,7 @@ export async function getAllLoans({ commit }) {
 
   commit('SET_ALL_LOANS', response.data)
 }
+
+export async function createLoan({ commit }, payload) {
+  const response = await api.post('/loans', payload)
+}
