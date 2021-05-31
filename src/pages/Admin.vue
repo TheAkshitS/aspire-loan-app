@@ -3,9 +3,9 @@
     <div class="q-pa-lg">
       <q-table
         title="All loans"
-        :data="data"
+        :data="allLoans"
         :columns="columns"
-        row-key="name"
+        row-key="loanId"
         :selected-rows-label="getSelectedString"
         selection="multiple"
         :selected.sync="selected"
@@ -15,7 +15,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
+  name: 'admin',
+
   data() {
     return {
       selected: [],
@@ -33,7 +37,6 @@ export default {
           label: 'Full Name',
           align: 'left',
           field: 'fullName',
-          // format: (val) => `${val}`,
           sortable: true,
         },
         {
@@ -71,31 +74,20 @@ export default {
           // sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
         },
       ],
-
-      data: [
-        {
-          fullName: 'Akshit S',
-          email: 'akshit@gmail.com',
-          phone: '8888888888',
-          amountRequired: 10000,
-          loanTerm: 3,
-          userId: 'd8be7e2f-7428-4195-817d-83e04da73999',
-          loanId: 'b0c90',
-          repaymentFrequency: 1,
-          isActive: true,
-          createdAt: '2021-05-31 19:58:54',
-          updatedAt: null,
-        },
-      ],
     }
   },
+
+  computed: {
+    ...mapState('loan', ['allLoans']),
+  },
+
   methods: {
     getSelectedString() {
-      return this.selected.length === 0
-        ? ''
-        : `${this.selected.length} record${
-            this.selected.length > 1 ? 's' : ''
-          } selected of ${this.data.length}`
+      // return this.selected.length === 0
+      //   ? ''
+      //   : `${this.selected.length} record${
+      //       this.selected.length > 1 ? 's' : ''
+      //     } selected of ${this.data.length}`
     },
   },
 }

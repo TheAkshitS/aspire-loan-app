@@ -40,6 +40,7 @@
       </center>
     </q-card>
 
+    <!-- Only for demo purpose -->
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
       <q-btn
         fab
