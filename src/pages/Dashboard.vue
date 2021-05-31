@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-toolbar class="bg-primary">
+    <q-toolbar class="bg-primary mobile-only">
       <q-toolbar-title class="text-white">
         <center>
           <div>SGD {{ creditLine }}</div>
