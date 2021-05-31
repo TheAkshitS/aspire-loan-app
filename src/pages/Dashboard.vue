@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   computed: {
@@ -63,6 +63,16 @@ export default {
     showLoanPayOption() {
       return true
     },
+  },
+
+  async created() {
+    await this.getAllLoans()
+  },
+
+  methods: {
+    ...mapActions({
+      getAllLoans: 'loan/getAllLoans',
+    }),
   },
 }
 </script>
