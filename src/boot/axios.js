@@ -4,8 +4,8 @@ import axios from 'axios'
 Vue.prototype.$axios = axios
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000',
-    "Content-Type": "application/json"
+  baseURL: 'https://loan-json-server.herokuapp.com',
+  'Content-Type': 'application/json',
 })
 
 Vue.prototype.$api = api
