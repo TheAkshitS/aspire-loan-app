@@ -1,5 +1,5 @@
 <template>
-  <q-form @submit="onSubmit" @reset="resetForm">
+  <q-form @submit="onSubmit" @reset="resetForm" data-cy="loan-form">
     <div class="text-h6 q-mb-xl desktop-only">
       Loan application
     </div>
@@ -9,6 +9,7 @@
       label="Full name *"
       color="secondary"
       :rules="rules.required"
+      data-cy="fullName"
     >
       <template v-slot:append>
         <q-icon name="person" />
@@ -21,6 +22,7 @@
       label="Email *"
       color="secondary"
       :rules="rules.required"
+      data-cy="email"
     >
       <template v-slot:append>
         <q-icon name="email" />
@@ -33,6 +35,7 @@
       label="Phone no. *"
       color="secondary"
       :rules="rules.required"
+      data-cy="phone"
     >
       <template v-slot:append>
         <q-icon name="phone" />
@@ -45,6 +48,7 @@
       label="Amount required *"
       color="secondary"
       :rules="rules.numberRequired"
+      data-cy="amountRequired"
     >
       <template v-slot:append>
         <q-icon name="attach_money" />
@@ -57,6 +61,7 @@
       label="Loan term(in weeks) *"
       color="secondary"
       :rules="rules.numberRequired"
+      data-cy="loanTerm"
     >
       <template v-slot:append>
         <q-icon name="schedule" />
@@ -68,10 +73,17 @@
       color="secondary"
       label="I accept the license and terms"
       class="q-my-sm"
+      data-cy="formTermsAccepted"
     />
 
     <div>
-      <q-btn rounded label="Submit" type="submit" color="secondary" />
+      <q-btn
+        rounded
+        label="Submit"
+        type="submit"
+        color="secondary"
+        data-cy="submit"
+      />
       <q-btn
         label="Reset"
         type="reset"
