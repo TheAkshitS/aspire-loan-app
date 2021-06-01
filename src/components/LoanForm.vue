@@ -4,8 +4,7 @@
       v-model="form.fullName"
       label="Full name *"
       color="secondary"
-      lazy-rules
-      :rules="[(val) => (val && val.length > 0) || 'Amount is required']"
+      :rules="rules.required"
     >
       <template v-slot:append>
         <q-icon name="person" />
@@ -17,8 +16,7 @@
       v-model="form.email"
       label="Email *"
       color="secondary"
-      lazy-rules
-      :rules="[(val) => (val && val.length > 0) || 'Amount is required']"
+      :rules="rules.required"
     >
       <template v-slot:append>
         <q-icon name="email" />
@@ -30,8 +28,7 @@
       v-model="form.phone"
       label="Phone no. *"
       color="secondary"
-      lazy-rules
-      :rules="[(val) => (val && val.length > 0) || 'Amount is required']"
+      :rules="rules.required"
     >
       <template v-slot:append>
         <q-icon name="phone" />
@@ -43,8 +40,7 @@
       v-model.number="form.amountRequired"
       label="Amount required *"
       color="secondary"
-      lazy-rules
-      :rules="[(val) => (val && val > 0) || 'Amount is required']"
+      :rules="rules.numberRequired"
     >
       <template v-slot:append>
         <q-icon name="attach_money" />
@@ -56,11 +52,7 @@
       v-model.number="form.loanTerm"
       label="Loan term(in weeks) *"
       color="secondary"
-      lazy-rules
-      :rules="[
-        (val) => (val !== null && val !== '') || 'Please type your age',
-        (val) => (val > 0 && val < 100) || 'Please type a real age',
-      ]"
+      :rules="rules.numberRequired"
     >
       <template v-slot:append>
         <q-icon name="schedule" />
@@ -93,11 +85,12 @@ import { date, uid } from 'quasar'
 import { mapActions } from 'vuex'
 
 export default {
-	name: 'LoanForm',
+  name: 'LoanForm',
 
-	data() {
-		return {
-			form: {
+  data() {
+    return {
+      formTermsAccepted: false,
+      form: {
         fullName: null,
         email: null,
         phone: null,
@@ -113,19 +106,22 @@ export default {
         createdAt: date.formatDate(Date.now(), 'YYYY-MM-DD HH:mm:ss'),
         updatedAt: null,
       },
-      formTermsAccepted: false,
-		}
-	},
+      rules: {
+        required: [(v) => (v || '').length > 0 || 'Required'],
+        numberRequired: [(v) => (v !== null && v > 1) || 'Required'],
+      },
+    }
+  },
 
-	computed: {
+  computed: {
     isCreateRoute() {
       return this.$route.name === 'create-loan'
     },
   },
 
-	methods: {
+  methods: {
     ...mapActions({
-      createLoan: 'loan/createLoan'
+      createLoan: 'loan/createLoan',
     }),
 
     async onSubmit() {
@@ -136,7 +132,9 @@ export default {
           message: 'You need to accept the license and terms first',
         })
       } else {
-        this.form.weeklyRepaymentAmount = Number((this.form.amountRequired / this.form.loanTerm).toFixed(3))
+        this.form.weeklyRepaymentAmount = Number(
+          (this.form.amountRequired / this.form.loanTerm).toFixed(3),
+        )
         this.form.amountToBeRepaid = this.form.amountRequired
 
         await this.createLoan(this.form)
