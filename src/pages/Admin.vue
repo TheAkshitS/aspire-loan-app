@@ -15,24 +15,27 @@
         <center>
           <q-toolbar>
             <q-toolbar-title class="text-grey text-body2">
-              <q-icon name="info" /> This page will only be getting shown to the Admin.
+              <q-icon name="info" />
+              This page will only be getting shown to the Admin.
             </q-toolbar-title>
           </q-toolbar>
         </center>
-      </q-footer> 
+      </q-footer>
 
       <q-dialog v-model="showConfirmApproval" persistent>
-      <q-card>
-        <q-card-section class="row items-center">
-          <span class="q-ml-sm">You are sure you want to approve the loan?</span>
-        </q-card-section>
+        <q-card>
+          <q-card-section class="row items-center">
+            <span class="q-ml-sm">
+              You are sure you want to approve the loan?
+            </span>
+          </q-card-section>
 
-        <q-card-actions align="right">
-          <q-btn flat label="Yes" color="secondary" @click="approveLoan" />
-          <q-btn flat label="No" color="secondary" @click="denyLoan" />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
+          <q-card-actions align="right">
+            <q-btn flat label="Yes" color="secondary" @click="approveLoan" />
+            <q-btn flat label="No" color="secondary" @click="denyLoan" />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
     </div>
   </div>
 </template>
@@ -129,7 +132,7 @@ export default {
     }),
 
     checkboxClicked() {
-      if(this.selectedColumn[0].isApproved) {
+      if (this.selectedColumn[0].isApproved) {
         this.selectedColumn = []
 
         return this.$q.notify({
@@ -138,7 +141,7 @@ export default {
           message: 'This loan is already approved.',
         })
       }
-      
+
       this.showConfirmApproval = true
     },
 
@@ -146,10 +149,10 @@ export default {
       const payload = {
         id: this.selectedColumn[0].id,
         payload: {
-          isApproved: true
-        }
+          isApproved: true,
+        },
       }
-      
+
       await this.updateLoan(payload)
       await this.getAllLoans()
 
@@ -161,7 +164,7 @@ export default {
         message: 'Loan approved.',
       })
     },
-    
+
     denyLoan() {
       this.selectedColumn = []
       this.showConfirmApproval = false

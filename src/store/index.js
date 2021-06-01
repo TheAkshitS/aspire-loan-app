@@ -15,19 +15,19 @@ Vue.use(Vuex)
  */
 
 const vuexLocal = new VuexPersistence({
-  storage: window.localStorage
+  storage: window.localStorage,
 })
 
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      loan
+      loan,
     },
     plugins: [vuexLocal.plugin],
 
     // enable strict mode (adds overhead!)
     // for dev mode only
-    strict: process.env.DEBUGGING
+    strict: process.env.DEBUGGING,
   })
 
   return Store

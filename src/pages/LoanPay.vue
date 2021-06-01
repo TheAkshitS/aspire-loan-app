@@ -1,11 +1,19 @@
 <template>
   <div class="q-pa-md">
     <div class="text-h6 q-mb-md">All approved loans</div>
-    <q-card class="q-mb-md" flat bordered v-for="loan in activeLoanList" :key="loan.id">
+    <q-card
+      class="q-mb-md"
+      flat
+      bordered
+      v-for="loan in activeLoanList"
+      :key="loan.id"
+    >
       <q-card-section horizontal>
         <q-card-section class="q-pt-xs">
           <!-- <div class="text-overline">Overline</div> -->
-          <div class="text-h5 q-mt-sm q-mb-xs" @click="copyloanId(loan.loanId)"># {{ loan.loanId }}</div>
+          <div class="text-h5 q-mt-sm q-mb-xs" @click="copyloanId(loan.loanId)">
+            # {{ loan.loanId }}
+          </div>
           <div class="text-caption text-grey">
             <ul>
               <li>Amount to be repaid: S$ {{ loan.amountToBeRepaid }}</li>
@@ -17,7 +25,7 @@
       <q-separator />
 
       <q-card-actions class="justify-between">
-        <div >
+        <div>
           <q-btn flat round icon="event" />
           <q-btn flat>
             {{ addToDate(loan.createdAt) }}
@@ -35,12 +43,12 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { date, copyToClipboard  } from 'quasar'
+import { date, copyToClipboard } from 'quasar'
 
 export default {
   computed: {
     ...mapGetters({
-      activeLoanList: 'loan/activeLoanList'
+      activeLoanList: 'loan/activeLoanList',
     }),
   },
 
@@ -50,7 +58,10 @@ export default {
     }),
 
     addToDate(selectedDate) {
-      return date.formatDate(date.addToDate(selectedDate, { days: 7 }), 'YYYY-MM-DD')
+      return date.formatDate(
+        date.addToDate(selectedDate, { days: 7 }),
+        'YYYY-MM-DD',
+      )
     },
 
     async copyloanId(text) {
@@ -67,8 +78,8 @@ export default {
       const payload = {
         id: loan.id,
         payload: {
-          amountToBeRepaid: loan.amountToBeRepaid - loan.weeklyRepaymentAmount
-        }
+          amountToBeRepaid: loan.amountToBeRepaid - loan.weeklyRepaymentAmount,
+        },
       }
 
       await this.updateLoan(payload)
@@ -79,7 +90,7 @@ export default {
         message: 'Weekly repayment made successfully.',
       })
       await this.$router.push('/')
-    }
-  }
+    },
+  },
 }
 </script>
