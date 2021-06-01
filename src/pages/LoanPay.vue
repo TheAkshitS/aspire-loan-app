@@ -29,7 +29,10 @@
             </div>
             <div class="text-caption text-grey">
               <ul>
-                <li>Amount to be repaid: S$ {{ loan.amountToBeRepaid }}</li>
+                <li>Total loan amount: S${{ loan.amountRequired }}</li>
+                <li>
+                  Amount still to be repaid: S${{ loan.amountToBeRepaid }}
+                </li>
                 <li>Loan Term: {{ loan.loanTerm }} weeks</li>
               </ul>
             </div>
@@ -108,3 +111,15 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 5px 0;
+  }
+}
+</style>
