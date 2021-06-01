@@ -1,43 +1,57 @@
 <template>
   <div class="q-pa-md">
-    <div class="text-h6 q-mb-md">All approved loans</div>
-    <q-card
-      class="q-mb-md"
-      flat
-      bordered
-      v-for="loan in activeLoanList"
-      :key="loan.id"
+    <div
+      class="text-h6 q-mb-md"
+      :class="$q.platform.is.mobile ? '' : 'q-mt-lg q-ml-xl'"
     >
-      <q-card-section horizontal>
-        <q-card-section class="q-pt-xs">
-          <!-- <div class="text-overline">Overline</div> -->
-          <div class="text-h5 q-mt-sm q-mb-xs" @click="copyloanId(loan.loanId)">
-            # {{ loan.loanId }}
-          </div>
-          <div class="text-caption text-grey">
-            <ul>
-              <li>Amount to be repaid: S$ {{ loan.amountToBeRepaid }}</li>
-              <li>Loan Term: {{ loan.loanTerm }} weeks</li>
-            </ul>
-          </div>
-        </q-card-section>
-      </q-card-section>
-      <q-separator />
+      All approved loans
+    </div>
 
-      <q-card-actions class="justify-between">
-        <div>
-          <q-btn flat round icon="event" />
-          <q-btn flat>
-            {{ addToDate(loan.createdAt) }}
-          </q-btn>
-        </div>
-        <div>
-          <q-btn flat color="secondary" @click="repayLoan(loan)">
-            Repay
-          </q-btn>
-        </div>
-      </q-card-actions>
-    </q-card>
+    <div
+      class="row"
+      :class="$q.platform.is.mobile ? 'justify-center' : 'q-ma-xl'"
+    >
+      <q-card
+        class="q-mb-md card-container"
+        :class="$q.platform.is.mobile ? '' : 'q-ml-md'"
+        flat
+        bordered
+        v-for="loan in activeLoanList"
+        :key="loan.id"
+      >
+        <q-card-section horizontal>
+          <q-card-section class="q-pt-xs">
+            <div
+              class="text-h5 q-mt-sm q-mb-xs"
+              @click="copyloanId(loan.loanId)"
+            >
+              # {{ loan.loanId }}
+            </div>
+            <div class="text-caption text-grey">
+              <ul>
+                <li>Amount to be repaid: S$ {{ loan.amountToBeRepaid }}</li>
+                <li>Loan Term: {{ loan.loanTerm }} weeks</li>
+              </ul>
+            </div>
+          </q-card-section>
+        </q-card-section>
+        <q-separator />
+
+        <q-card-actions class="justify-between">
+          <div>
+            <q-btn flat round icon="event" />
+            <q-btn flat>
+              {{ addToDate(loan.createdAt) }}
+            </q-btn>
+          </div>
+          <div>
+            <q-btn flat color="secondary" @click="repayLoan(loan)">
+              Repay
+            </q-btn>
+          </div>
+        </q-card-actions>
+      </q-card>
+    </div>
   </div>
 </template>
 

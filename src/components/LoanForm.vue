@@ -1,5 +1,9 @@
 <template>
   <q-form @submit="onSubmit" @reset="resetForm">
+    <div class="text-h6 q-mb-xl desktop-only">
+      Loan application
+    </div>
+
     <q-input
       v-model="form.fullName"
       label="Full name *"

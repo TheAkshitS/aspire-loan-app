@@ -9,9 +9,12 @@
       </q-toolbar-title>
     </q-toolbar>
 
-    <q-card class="q-ma-lg">
-      <center>
-        <q-card-section clas>
+    <center>
+      <q-card
+        class="card-container"
+        :class="$q.platform.is.mobile ? 'q-ma-lg' : 'q-ma-xl q-pa-xl'"
+      >
+        <q-card-section>
           <div class="text-h6">What would you like to do today?</div>
         </q-card-section>
 
@@ -42,8 +45,8 @@
           </div>
           <div>The other party receives the funds instantly, less 2.9%</div>
         </q-card-section>
-      </center>
-    </q-card>
+      </q-card>
+    </center>
 
     <!-- Only for demo purpose -->
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
