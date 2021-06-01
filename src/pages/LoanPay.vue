@@ -29,9 +29,13 @@
             </div>
             <div class="text-caption text-grey">
               <ul>
-                <li>Total loan amount: S${{ loan.amountRequired }}</li>
                 <li>
-                  Amount still to be repaid: S${{ loan.amountToBeRepaid }}
+                  Total loan amount: S${{ formatNumber(loan.amountRequired) }}
+                </li>
+                <li>
+                  Amount still to be repaid: S${{
+                    formatNumber(loan.amountToBeRepaid)
+                  }}
                 </li>
                 <li>Loan Term: {{ loan.loanTerm }} weeks</li>
               </ul>
@@ -73,6 +77,12 @@ export default {
     ...mapActions({
       updateLoan: 'loan/updateLoan',
     }),
+
+    formatNumber(value) {
+      return new Intl.NumberFormat({ maximumSignificantDigits: 2 }).format(
+        value,
+      )
+    },
 
     addToDate(selectedDate) {
       return date.formatDate(
@@ -120,6 +130,10 @@ ul {
 
   li {
     margin: 5px 0;
+  }
+
+  li:last-child {
+    margin-top: 15px;
   }
 }
 </style>
