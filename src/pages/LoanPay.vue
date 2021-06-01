@@ -82,12 +82,12 @@ export default {
         },
       }
 
-      await this.updateLoan(payload)
+      const response = await this.updateLoan(payload)
 
       await this.$q.notify({
         color: 'positive',
         icon: 'done',
-        message: 'Weekly repayment made successfully.',
+        message: `Weekly repayment done successfully, remaing amount, S$${response.data.amountToBeRepaid}`,
       })
       await this.$router.push('/')
     },
