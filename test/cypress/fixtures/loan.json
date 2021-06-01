@@ -1,0 +1,16 @@
+{
+	"fullName": "Akshit S",
+	"email": "akshit@gmail.com",
+	"phone": "8888888888",
+	"amountRequired": 10000,
+	"amountToBeRepaid": 8000,
+	"loanTerm": 10,
+	"userId": "d8be7e2f-7428-4195-817d-83e04da73999",
+	"loanId": "b0c9g",
+	"repaymentFrequency": 1,
+	"isActive": true,
+	"isApproved": true,
+	"createdAt": "2021-05-31 19:58:54",
+	"updatedAt": null,
+	"weeklyRepaymentAmount": 1000
+}
