@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header class="mobile-only">
+    <q-header v-if="$q.platform.is.mobile">
       <q-toolbar>
         <q-btn
           flat
@@ -12,24 +12,22 @@
           @click="$router.go(-1)"
         />
 
-        <q-toolbar-title @click="$router.push('/')">
-        </q-toolbar-title>
+        <q-toolbar-title @click="$router.push('/')" />
 
         <q-img
           alt="Aspire logo"
           src="~assets/aspire-logo-round.svg"
           style="width: 20px;"
         />
-        <!-- <q-btn flat round dense icon="more_vert" /> -->
       </q-toolbar>
     </q-header>
 
     <q-drawer
-        v-model="showLeftDrawer"
-        content-class="bg-primary"
-        class="desktop-only"
-        :width="500"
-      >
+      v-model="showLeftDrawer"
+      v-if="$q.platform.is.desktop"
+      class="bg-primary"
+      :width="500"
+    >
       <div class="q-px-xl text-white">
         <q-img
           alt="Aspire logo"
@@ -42,10 +40,11 @@
         </div>
 
         <div class="q-mt-sm">
-          We are excited to have you here. To get started, please go through the get cash form.
+          We are excited to have you here. To get started, please go through the
+          get cash form.
         </div>
       </div>
-      </q-drawer>
+    </q-drawer>
 
     <q-page-container>
       <router-view />
@@ -59,7 +58,7 @@ export default {
 
   data() {
     return {
-      showLeftDrawer: true
+      showLeftDrawer: true,
     }
   },
 }

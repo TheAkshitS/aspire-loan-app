@@ -37,6 +37,11 @@
                     formatNumber(loan.amountToBeRepaid)
                   }}
                 </li>
+                <li>
+                  Weekly payable amount: S${{
+                    formatNumber(loan.weeklyRepaymentAmount)
+                  }}
+                </li>
                 <li>Loan Term: {{ loan.loanTerm }} weeks</li>
               </ul>
             </div>

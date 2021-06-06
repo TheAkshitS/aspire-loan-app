@@ -1,13 +1,14 @@
-import Vue from 'vue'
+import { boot } from 'quasar/wrappers'
 import axios from 'axios'
-
-Vue.prototype.$axios = axios
 
 const api = axios.create({
   baseURL: 'https://loan-json-server.herokuapp.com',
   'Content-Type': 'application/json',
 })
 
-Vue.prototype.$api = api
+export default boot(({ app }) => {
+  app.config.globalProperties.$axios = axios
+  app.config.globalProperties.$api = api
+})
 
 export { axios, api }
