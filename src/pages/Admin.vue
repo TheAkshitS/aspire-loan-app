@@ -11,14 +11,12 @@
     />
 
     <q-footer class="bg-white">
-      <center>
-        <q-toolbar>
-          <q-toolbar-title class="text-grey text-body2">
-            <q-icon name="info" />
-            This page will only be getting shown to the Admin.
-          </q-toolbar-title>
-        </q-toolbar>
-      </center>
+      <q-toolbar class="center">
+        <q-toolbar-title class="text-grey text-body2">
+          <q-icon name="info" />
+          This page will only be getting shown to the Admin.
+        </q-toolbar-title>
+      </q-toolbar>
     </q-footer>
 
     <q-dialog v-model="showConfirmApproval" persistent>

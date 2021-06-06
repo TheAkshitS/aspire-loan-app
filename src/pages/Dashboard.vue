@@ -1,16 +1,13 @@
 <template>
   <q-toolbar v-if="$q.platform.is.mobile" class="bg-primary">
-    <q-toolbar-title class="text-white">
-      <center>
-        <div>SGD {{ creditLine }}</div>
-        <div class="text-subtitle2 q-my-xs">Credit Limit</div>
-      </center>
+    <q-toolbar-title class="text-white center">
+      <div>SGD {{ creditLine }}</div>
+      <div class="text-subtitle2 q-my-xs">Credit Limit</div>
     </q-toolbar-title>
   </q-toolbar>
-
-  <center>
+  <div class="row wrap justify-center">
     <q-card
-      class="card-container"
+      class="card-container center"
       :class="$q.platform.is.mobile ? 'q-ma-lg' : 'q-ma-xl q-pa-xl'"
     >
       <q-card-section>
@@ -45,7 +42,7 @@
         <div>The other party receives the funds instantly, less 2.9%</div>
       </q-card-section>
     </q-card>
-  </center>
+  </div>
 
   <!-- Only for demo purpose -->
   <q-page-sticky position="bottom-right" :offset="[18, 18]">
