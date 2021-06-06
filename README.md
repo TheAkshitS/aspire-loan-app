@@ -1,6 +1,6 @@
 # 🔰 [aspire-loan-app](https://aspire-loan-app.vercel.app 'aspire-loan-app')
 
-Mobile first app built using [Quasar(v1)](https://quasar.dev/ 'Quasar(v1)') for UI, [loan-json-server](https://github.com/TheAkshitS/loan-json-server 'loan-json-server') as REST API & deployed on [Vercel](https://vercel.com 'Vercel').
+Mobile first app built using [Quasar v2](https://next.quasar.dev/ 'Quasar v2')[(Vue 3)](https://v3.vuejs.org/ '(Vue 3)') for UI, [loan-json-server](https://github.com/TheAkshitS/loan-json-server 'loan-json-server') as REST API & deployed on [Vercel](https://vercel.com 'Vercel').
 
 ## Install the dependencies
 
