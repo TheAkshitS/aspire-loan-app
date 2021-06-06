@@ -1,42 +1,38 @@
 <template>
-  <div>
-    <div class="q-pa-lg">
-      <q-table
-        title="All loans"
-        :data="allLoans"
-        :columns="columns"
-        row-key="loanId"
-        :selected-rows-label="checkboxClicked"
-        selection="single"
-        :selected.sync="selectedColumn"
-      />
+  <div class="q-pa-lg">
+    <q-table
+      title="All loans"
+      :rows="allLoans"
+      :columns="columns"
+      row-key="loanId"
+      :selected-rows-label="checkboxClicked"
+      selection="single"
+      v-model:selected="selectedColumn"
+    />
 
-      <q-footer class="bg-white">
-        <center>
-          <q-toolbar>
-            <q-toolbar-title class="text-grey text-body2">
-              <q-icon name="info" />
-              This page will only be getting shown to the Admin.
-            </q-toolbar-title>
-          </q-toolbar>
-        </center>
-      </q-footer>
+    <q-footer class="bg-white">
+      <q-toolbar class="center">
+        <q-toolbar-title class="text-grey text-body2">
+          <q-icon name="info" />
+          This page will only be getting shown to the Admin.
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
 
-      <q-dialog v-model="showConfirmApproval" persistent>
-        <q-card>
-          <q-card-section class="row items-center">
-            <span class="q-ml-sm">
-              You are sure you want to approve the loan?
-            </span>
-          </q-card-section>
+    <q-dialog v-model="showConfirmApproval" persistent>
+      <q-card>
+        <q-card-section class="row items-center">
+          <span class="q-ml-sm">
+            You are sure you want to approve the loan?
+          </span>
+        </q-card-section>
 
-          <q-card-actions align="right">
-            <q-btn flat label="Yes" color="secondary" @click="approveLoan" />
-            <q-btn flat label="No" color="secondary" @click="denyLoan" />
-          </q-card-actions>
-        </q-card>
-      </q-dialog>
-    </div>
+        <q-card-actions align="right">
+          <q-btn flat label="Yes" color="secondary" @click="approveLoan" />
+          <q-btn flat label="No" color="secondary" @click="denyLoan" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 

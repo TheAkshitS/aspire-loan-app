@@ -1,6 +1,6 @@
 <template>
   <q-form @submit="onSubmit" @reset="resetForm" data-cy="loan-form">
-    <div class="text-h6 q-mb-xl desktop-only">
+    <div v-if="$q.platform.is.desktop" class="text-h6 q-mb-xl">
       Loan application
     </div>
 
