@@ -23,15 +23,16 @@
     "deploy": "vercel"
   },
   "dependencies": {
-    "@quasar/extras": "^1.10.6",
+    "@quasar/extras": "^1.10.7",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "quasar": "^2.0.0-beta.19",
+    "quasar": "^2.0.0-rc.3",
+    "vuex": "^4.0.2",
     "vuex-persist": "^3.1.3"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.0.0",
-    "@quasar/app": "^3.0.0-beta.28",
+    "@quasar/app": "^3.0.0-rc.3",
     "@quasar/quasar-app-extension-testing": "^1.0.3",
     "@quasar/quasar-app-extension-testing-e2e-cypress": "^3.1.0",
     "@quasar/quasar-app-extension-testing-unit-jest": "^2.2.2",
